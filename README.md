@@ -1,7 +1,7 @@
 # Django-Simple-Data-Classifier with Ploty express
 
 ## Motivation
-A rapid simple methode to classify your multidimensional data that stems from your experiments, measurements or studies with only two clicks.
+A rapid simple methode to classify your multidimensional data that stems from your experiments, measurements or studies with only two clicks. The code works with function based views. 
 
 ## How to use it
 ### Loading the data sets
