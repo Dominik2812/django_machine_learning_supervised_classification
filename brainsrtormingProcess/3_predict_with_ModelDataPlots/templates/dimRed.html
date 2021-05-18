@@ -1,0 +1,42 @@
+{% extends "base.html" %} 
+{% block main %} 
+
+
+<div id='PCAPlot' style="width:45%; float: left; margin:50px; border:5px solid black; border-radius:20px ;padding:20px;">
+    <h3>PCA</h3>
+    {% autoescape off %}
+    {{ pcaPlot }}
+    {% endautoescape %}
+
+    {% for PCA_plot,modelname,score in PCA_zipped%}
+    
+    <div  style="width:90%; float: left; margin:10px; border:5px solid black; border-radius:20px ;padding:10px;">
+        <h4>{{modelname}}</h4>
+        {% autoescape off %}
+            {{ PCA_plot }}
+        {% endautoescape %}
+        <div>Scoring in Crossvalidation :{{score}}</div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<div id='LDAPlot' style="width:45%; float: left; margin:50px; border:5px solid black; border-radius:20px ;padding:20px;">
+    <h3>LDA</h3>
+    {% autoescape off %}
+    {{ LDAPlot }}
+    {% endautoescape %}
+
+    {% for LDA_plot,modelname,score in LDA_zipped%}
+    
+    <div style="width:90%; float: left; margin:10px; border:5px solid black; border-radius:20px ;padding:10px;">
+        <h4>{{modelname}}</h4>
+        {% autoescape off %}
+            {{ LDA_plot }}
+        {% endautoescape %}
+        <div>Scoring  in Crossvalidation :{{score}}</div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

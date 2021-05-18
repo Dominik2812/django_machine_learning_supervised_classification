@@ -1,0 +1,129 @@
+{% extends "base.html" %} 
+{% block main %} 
+
+
+
+<!-- <div class="position-absolute top-50 start-100 translate-middle"> -->
+<div id="startWrapper" style="width:100%; float:left">
+
+
+
+    <div id='scatterMatrix' style="width:90%;  padding-top: 50%; float: left; margin:50px; border:5px solid black; border-radius:50px ;padding:50px;">
+        <h3>Scatter Matrix</h3>
+        {% autoescape off %}
+        {{ plot_div }}
+        {% endautoescape %}
+    </div>
+<!-- </div> -->
+
+    <!-- <div id='new_DataTable' style="width:auto; height:auto; border-radius:50px; ;">
+        <h3>newData</h3>
+
+            <table  style="width:70%;  margin:50px; border:5px solid black; border-radius:50px;  padding:50px;">
+                <thead>
+                        <tr>
+                           {% for new_parameter in new_parameters %}
+                            <th scope="col">
+                                {{new_parameter}}
+                                <div class="form-group">
+                                    <input class="form-control" name="{{new_parameter}}" value="{{new_parameter}}" >
+                                </div>
+                            </th>
+                            {% endfor %}
+                        </tr>
+                </thead>
+                <tbody>
+                    {% for new_sample in new_samples %}
+                        <tr >
+                        {% for element in new_sample %}
+                            <td>{{element}}</td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+    </div> -->
+</div>
+
+
+
+
+
+
+
+<!-- <div class="container pt-5" style="float: left; margin:50px;  padding:100px; width: 80%; "> -->
+    <div id='DataTable' style="width:auto; height:auto; border-radius:50px; ;">
+        <h3>Data Table</h3>
+        <!-- <div class="row"  > -->
+            <table  style="width:70%;  margin:50px; border:5px solid black; border-radius:50px;  padding:50px;">
+                <thead>
+                    <form action="{% url 'predict:changeCols'  %}" id="post-form" method="POST"> 
+                        {% csrf_token %} 
+
+                        <tr>
+                            
+                            <th>
+                                {{url}}
+                                <div class="form-group">
+                                    <input class="form-control" name="url" value="{{url}}" hidden>
+                                    <button type="submit" value="Submit" class="btn btn-primary" >Submit</button>
+                                </div>
+                            </th>
+                            {% for parameter in parameters %}
+                            <th scope="col">
+                                {{parameter}}
+                                <div class="form-group">
+                                    <input class="form-control" name="{{parameter}}" value="{{parameter}}" >
+                                </div>
+                            </th>
+                            {% endfor %}
+                            
+
+                        </tr>
+                    
+                    </form> 
+                </thead>
+                <tbody>
+                    {% for sample in samples %}
+                        <tr >
+                        {% for element in sample %}
+                            <td>{{element}}</td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        <!-- </div> -->
+    </div>
+</div>
+
+
+
+{% if infoList %}
+                    
+<div id='infos' style="margin:20px; padding:20px; ">
+    <h2>infos</h2>
+    <div id='infonames'style='width:30%; float:left; width:fit-content; margin:20px; '>
+        {% for name in infoNames %}
+        <p>{{name}}</p>
+        {% endfor%}
+    </div>
+
+
+    <div id='infoList' style='width:30%; float:left; width:fit-content; margin:20px; '>
+        {% for info in infoList %}
+        <p>{{info}}</p>
+        {% endfor%}
+    </div>
+</div>
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

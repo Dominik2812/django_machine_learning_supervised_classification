@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href='statics/predict/style.css'> -->
+        <title>Iris prediction</title>
+    </head>
+    <body>
+
+        
+    <!-- -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'welcome' %}"> Welcome <span class="sr-only">(current)</span></a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+        <!-- <div class="position-relative"></div> -->
+
+            <div style = "background-color: rgb(218, 209, 209); float: left; width: 20%; border-radius:5%; padding:20px; margin:20px;"> 
+                <div class="container pt-1">
+                    <!-- <div class="row justify-content-md-center"> -->
+                        <!-- <div class="col-md-5"> -->
+                            <h1>LoadModelData</h1>
+                            <form action="{% url 'predict:start'  %}" id="post-form" method="POST"> 
+                                {% csrf_token %} 
+                                <div class="form-group">
+                                    <input class="form-control" name="url" placeholder="url" required>
+                                </div>
+                                <button type="submit" value="Submit" class="btn btn-primary" >Submit</button>
+                            </form> 
+
+
+                            <form action="{% url 'predict:simpleAccuracy'  %}" id="post-form" method="POST"> 
+                                {% csrf_token %} 
+                                <div class="form-group">
+                                    <input class="form-control" name="url" value="{{url}}" hidden>
+                                </div>
+                                <button type="submit" value="Submit" class="btn btn-primary" >accuracy</button>
+                            </form> 
+
+      
+
+                        <!-- </div> -->
+                    <!-- </div> -->
+                </div>
+
+
+                {% if optimizedScores %}
+                    
+                   <div id='scoring' style="margin:20px; padding:20px; ">
+                        <h4>scoring with optimized Hyper Parameters</h4>
+                        <div id='modelNames'style='width:30%; float:left; width:fit-content; margin:20px; '>
+                            {% for name in opimizedmodelNames %}
+                            <p>{{name}}</p>
+                            {% endfor%}
+                        </div>
+                
+                
+                        <div id='scores' style='width:30%; float:left; width:fit-content; margin:20px; '>
+                            {% for score in optimizedScores %}
+                            <p>{{score}}</p>
+                            {% endfor%}
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if mvc_score %}
+                    
+                <div id='scoring' style="margin:20px; padding:20px; ">
+                     <h4>Majority Vote</h4>
+                     <div id='modelNames'style='width:30%; float:left; width:fit-content; margin:20px; '>
+                         {% for name in mvc_name %}
+                         <p>{{name}}</p>
+                         {% endfor%}
+                     </div>
+             
+             
+                     <div id='scores' style='width:30%; float:left; width:fit-content; margin:20px; '>
+                         {% for score in mvc_score %}
+                         <p>{{score}}</p>
+                         {% endfor%}
+                     </div>
+                 </div>
+             {% endif %}
+
+            </div>
+            
+
+
+            <div id='globalwrapper' style = "background-color: rgba(247, 222, 222, 0.671); float: left; width: 70%; border-radius:50px; padding:20px; margin:20px;"> 
+            {% block main %}
+            
+            {% endblock %}
+        </div>
+
+    
+    </body>
+</html>
+
+ 

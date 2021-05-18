@@ -1,0 +1,28 @@
+
+        <h3>Test Data Table</h3>
+            <table  style="width:70%;  margin:50px; border:5px solid black; border-radius:50px;  padding:50px;">
+                <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            {% for parameter_test in parameters_Test %}
+                            <th scope="col">
+                                {{parameter_test}}
+                            </th>
+                            {% endfor %}
+                        </tr>
+                </thead>
+                <tbody>
+                    {% for sample in samples_Test %}
+                        <tr >
+                        {% for element in sample %}
+                            <td>{{element}}</td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+
+

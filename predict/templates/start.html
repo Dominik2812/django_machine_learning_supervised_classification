@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+{% block main %} 
+
+
+<!-- <div id="startWrapper" style="width:100%; float:left; background-color:rgb(170, 162, 162); border-radius:50px;"> -->
+
+   
+        
+    {% csrf_token %} 
+    {% include 'Datatable_Model.html' %}
+    {% include 'Datatable_Test.html' %}
+
+    <form action="{% url 'predict:simpleAccuracy'  %}" id="post-form" method="POST"> 
+        {% csrf_token %} 
+        <div class="form-group">
+            <input class="form-control" name="URL_Model" value="{{URL_Model}}" hidden>
+            <input class="form-control" name="URL_Test" value="{{URL_Test}}" hidden>
+        </div>
+        <button type="submit" value="Submit" class="btn btn-primary" >Start Classification</button>
+    </form> 
+
+
+{% endblock %}

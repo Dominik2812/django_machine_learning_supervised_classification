@@ -1,0 +1,99 @@
+{% extends "base.html" %} 
+{% block main %} 
+
+
+
+
+
+<div id='PCAPlot' style="width:40%; float: left; margin:50px; border:5px solid black; border-radius:10%;padding:50px;">
+    <h3>PCA</h3>
+    {% autoescape off %}
+    {{ pcaPlot }}
+    {% endautoescape %}
+
+    <div id='PCACV' style="margin:20px; padding:20px; ">
+        <h5>Crossvalidation</h5>
+        <div id='modelNames' style='width:30%; float:left; width:fit-content; margin:20px; '>
+            {% for name in modelNames %}
+            <p>{{name}}</p>
+            {% endfor%}
+        </div>
+
+
+        <div id='scores' style='width:30%; float:left; width:fit-content; margin:20px; '>
+            {% for score in scoresPCACV %}
+            <p>{{score}}</p>
+            {% endfor%}
+        </div>
+
+        <div id='PCACV' style="margin:20px; padding:20px; ">
+            <h5>Crossvalidation with optimized Parameters</h5>
+            <div id='modelNames' style='width:30%; float:left; width:fit-content; margin:20px; '>
+                {% for name in PDA_opimizedmodelNames %}
+                <p>{{name}}</p>
+                {% endfor%}
+            </div>
+    
+    
+            <div id='scores' style='width:30%; float:left; width:fit-content; margin:20px; '>
+                {% for score in PDA_optimizedScores %}
+                <p>{{score}}</p>
+                {% endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id='LDAPlot' style="width:40%; float: left; margin:50px; border:5px solid black; border-radius:10%;padding:50px;">
+    <h3>LDA</h3>
+    {% autoescape off %}
+    {{ LDAPlot }}
+    {% endautoescape %}
+
+    
+ 
+    <div id='LDACV' style="margin:20px; padding:20px;">
+        <h5>Crossvalidation LDA</h5>
+        <div id='modelNames' style='width:30%; float:left; width:fit-content; margin:20px; '>
+            {% for name in modelNames %}
+            <p>{{name}}</p>
+            {% endfor%}
+        </div>
+
+
+        <div id='scores' style='width:30%; float:left; width:fit-content; margin:20px; '>
+            {% for score in scoresLDACV %}
+            <p>{{score}}</p>
+            {% if score == None %}
+            <p>To project LDA in 2D it need at least 3 classes, your data probably contains less</p>
+            {% endif%}
+            {% endfor%}
+        </div>
+    </div>
+
+    <div id='LDACV' style="margin:20px; padding:20px;">
+        <h5>Crossvalidation LDA with optimized Parameters</h5>
+        <div id='modelNames' style='width:30%; float:left; width:fit-content; margin:20px; '>
+            {% for name in LDA_opimizedmodelNames %}
+            <p>{{name}}</p>
+            {% endfor%}
+        </div>
+
+
+        <div id='scores' style='width:30%; float:left; width:fit-content; margin:20px; '>
+            {% for score in LDA_optimizedScores %}
+            <p>{{score}}</p>
+            {% if score == None %}
+            <p>To project LDA in 2D it need at least 3 classes, your data probably contains less</p>
+            {% endif%}
+            {% endfor%}
+        </div>
+    </div>
+</div>
+
+{% include 'pureScoring.html' %}
+
+
+
+
+{% endblock %}

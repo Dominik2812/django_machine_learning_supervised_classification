@@ -1,0 +1,24 @@
+
+
+<div style = "background-color: rgb(218, 209, 209); float: left; width: 20%; border-radius:5%; padding:20px; margin:20px;"> 
+    <div class="container pt-1">
+                <h1>Load Data</h1>
+                <form action="{% url 'predict:loadData'  %}" id="post-form" method="POST"> 
+                    {% csrf_token %} 
+                    <div class="form-group">
+                        <input class="form-control" name="URL_Model" placeholder="path to ModelData" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="URL_Test" placeholder="path to TestData" required>
+                    </div>
+                    <button type="submit" value="Submit" class="btn btn-primary" >Load Data</button>
+                </form> 
+
+
+
+    </div>
+</div>
+            
+
+
+ 
